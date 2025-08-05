@@ -8,7 +8,6 @@ public class Main {
     static int N, size;
     static char arr[], tmp[];
     static boolean visited[];
-    static Set<String> set;
     static StringBuilder sb;
 
     public static void main(String[] args) throws IOException {
@@ -17,7 +16,6 @@ public class Main {
 
         N = Integer.parseInt(br.readLine().trim());
         for (int i = 0; i < N; i++) {
-            set = new HashSet<>();
             String input = br.readLine().trim();
 
             arr = input.toCharArray();
@@ -36,17 +34,12 @@ public class Main {
 
     static void dfs(int cnt) {
         if (cnt >= size) {
-            
             // 조합된 단어들 문자열로 합치기
             StringBuilder now = new StringBuilder();
             for (char c : tmp) {
                 now.append(c);
             }
 
-            // 이미 포함된 경우
-            if (set.contains(now.toString())) return;
-
-            // 포함되지 않을 경우
             sb.append(now).append("\n");
             return;
         }
