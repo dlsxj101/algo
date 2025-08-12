@@ -34,15 +34,17 @@ public class Main {
 
         ans = Integer.MAX_VALUE;
         visited = new boolean[N];
-//        visited[K] = true;
-        dfs(0, K, 0);
+
+        visited[K] = true;
+        dfs(1, K, 0);
 
         System.out.println(ans);
     }
     static void dfs(int cnt, int now, int sum){
-        if(cnt >= N){
-            ans = Math.min(ans, sum);
+        if (sum >= ans) return;
 
+        if(cnt >= N){
+            ans = sum;
             return;
         }
 
