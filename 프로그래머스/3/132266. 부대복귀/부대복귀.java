@@ -15,8 +15,6 @@ class Solution {
         int dist[] = new int[n + 1];
         Arrays.fill(dist, Integer.MAX_VALUE);
         
-        boolean visited[] = new boolean[n+1];
-        
         Queue<Integer> q = new ArrayDeque<>();
         dist[destination] = 0;
         q.add(destination);
@@ -24,18 +22,13 @@ class Solution {
         while(!q.isEmpty()){
             int now = q.poll();
             
-            // if(visited[now]) continue;
-            
             for(int next : adjList[now]){
                 if(dist[next] > dist[now] + 1){
                     dist[next] = dist[now] + 1;
                     q.add(next);
-                    visited[next] = true;
                 }
             }
         }
-        
-        // System.out.println(Arrays.toString(dist));
         
         int[] answer = new int[sources.length];
         
