@@ -40,7 +40,7 @@ public class Main {
             }
 
             int ans = 0;
-            for (int roof = 0; roof < 100; roof++) {
+            for (int roof = 0; roof < 50; roof++) {
                 boolean visited[][] = new boolean[h][w];
                 Queue<int[]> q = new ArrayDeque<>();
 
@@ -67,7 +67,7 @@ public class Main {
                             // 소문자라면
                             else {
                                 keys.add(map[i][j]);
-                                map[i][i] = '.';
+                                map[i][j] = '.';
                             }
 
                             visited[i][j] = true;
