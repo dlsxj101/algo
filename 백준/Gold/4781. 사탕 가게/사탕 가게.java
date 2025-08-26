@@ -15,40 +15,33 @@ public class Main {
 
             int n = Integer.parseInt(st.nextToken());
             float mm = Float.parseFloat(st.nextToken());
-            int m = (int) Math.round(mm * 100.0);
+            int m = (int) Math.round(mm * 100);
 
             if(n == 0) break;
             int dp[] = new int[m+1];
 
-            int candies[][] = new int[n][2];
+            int c[] = new int[n];
+            int p[] = new int[n];
             for(int i = 0; i < n; i++){
                 st = new StringTokenizer(br.readLine());
 
-                int c = Integer.parseInt(st.nextToken());
+                c[i] = Integer.parseInt(st.nextToken());
                 float pp = Float.parseFloat(st.nextToken());
-                int p = (int) Math.round(pp * 100.0);
-
-                candies[i][0] = c;
-                candies[i][1] = p;
+                p[i] = (int) Math.round(pp * 100);
             }
 
             for(int i = 0; i < n; i++){
 
-                int c = candies[i][0];
-                int p = candies[i][1];
+                int ccc = c[i];
+                int ppp = p[i];
 
-                for(int j = p; j <= m; j++){
-                    dp[j] = Math.max(dp[j], dp[j - p] + c) ;
+                for(int j = ppp; j <= m; j++){
+                    dp[j] = Math.max(dp[j], dp[j - ppp] + ccc) ;
                 }
             }
 
             sb.append(dp[m]).append("\n");
-
-
-
         }
-
         System.out.println(sb);
-
     }
 }
