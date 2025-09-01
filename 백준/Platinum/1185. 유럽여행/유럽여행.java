@@ -7,7 +7,6 @@ public class Main {
 
     static int N, P;
     static int parents[], C[];
-    static List<Integer> adjList[];
 
     static class Edge implements Comparable<Edge> {
         int start;
@@ -74,11 +73,6 @@ public class Main {
 
         make();
 
-        adjList = new List[N + 1];
-        for (int i = 1; i <= N; i++) {
-            adjList[i] = new ArrayList<>();
-        }
-
         int cnt = 0;
         int moveCost = 0;
         for (Edge edge : edges) {
@@ -86,26 +80,10 @@ public class Main {
                 moveCost += edge.cost;
                 cnt++;
 
-                adjList[edge.start].add(edge.end);
-                adjList[edge.end].add(edge.start);
-
-//                System.out.println("start: " + edge.start + " end:" + edge.end);
                 if (cnt >= N - 1) break;
             }
         }
 
-        int visitCost = 0;
-        for (int i = 1; i <= N; i++) {
-            int s = adjList[i].size();
-
-//            System.out.println(s);
-            visitCost += s * C[i];
-        }
-
-//        System.out.println("moveCost: " + moveCost);
-//        System.out.println("visitCost: " + visitCost);
-//        System.out.println("min: " + min);
-//        System.out.println((moveCost * 2) + visitCost + min);
-        System.out.println(moveCost+min);
+        System.out.println(moveCost + min);
     }
 }
