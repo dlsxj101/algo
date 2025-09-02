@@ -10,22 +10,22 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         int N = Integer.parseInt(st.nextToken());
-        long K = Long.parseLong(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
 
-        long sum[] = new long[N+1];
+        int sum[] = new int[N+1];
         sum[0] = 0;
 
         st = new StringTokenizer(br.readLine());
         for(int i = 1; i <= N; i++){
-            sum[i] = sum[i-1] + Long.parseLong(st.nextToken());
+            sum[i] = sum[i-1] + Integer.parseInt(st.nextToken());
         }
 //        System.out.println(Arrays.toString(sum));
 
-        Map<Long, Integer> map = new HashMap<>();
+        Map<Integer, Integer> map = new HashMap<>();
         map.put(sum[0], 1);
         long cnt = 0;
         for(int i = 1; i <= N; i++){
-            long target = sum[i] - K;
+            int target = sum[i] - K;
             if(map.containsKey(target)){
                 cnt += map.get(target);
             }
@@ -36,45 +36,6 @@ public class Main {
                 map.put(sum[i], 1);
             }
         }
-
         System.out.println(cnt);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
