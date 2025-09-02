@@ -8,21 +8,6 @@ public class Main {
     static int N, M;
     static int parents[];
 
-    static class TimeTable implements Comparable<TimeTable> {
-        int code;
-        int time;
-
-        public TimeTable(int code, int time) {
-            this.code = code;
-            this.time = time;
-        }
-
-        @Override
-        public int compareTo(TimeTable o) {
-            return Integer.compare(this.time, o.time);
-        }
-    }
-
     static void make() {
         parents = new int[N + 1];
         Arrays.fill(parents, -1);
@@ -61,62 +46,25 @@ public class Main {
             union(a, b);
         }
 
-        TimeTable tt[] = new TimeTable[N];
         st = new StringTokenizer(br.readLine());
 
+        int prev = 0;
+        int cnt = 0;
         for(int i = 0; i < N; i++){
             int tmp = Integer.parseInt(st.nextToken());
-            tt[i] = new TimeTable(i + 1, tmp);
-        }
-//        Arrays.sort(tt);
 
-//        for(int i = 0; i < N; i++){
-//            System.out.println(tt[i].code);
-//        }
+            if(i == 0) {
+                prev = tmp;
+                continue;
+            }
 
-        int cnt = 0;
-        for(int i = 1; i < N; i++){
-            if(findSet(tt[i].time) == findSet(tt[i-1].time)) continue;
+            if(findSet(prev) == findSet(tmp)) {
+                prev = tmp;
+                continue;
+            }
+            prev = tmp;
             cnt++;
         }
         System.out.println(cnt);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
