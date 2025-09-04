@@ -3,12 +3,10 @@ import java.io.*;
 
 class Solution {
     
-    static int N;
     static int dist[][];
     
     public int solution(int n, int s, int a, int b, int[][] fares) {
-        
-        N = n;
+
         dist = new int[n + 1][n + 1];
         
         for(int i = 1; i <= n; i++){
@@ -34,10 +32,6 @@ class Solution {
                 }
             }
         }
-        
-        // for(int i = 1; i <= n; i++){
-        //     System.out.println(Arrays.toString(dist[i]));
-        // }
         
         int answer = Integer.MAX_VALUE;
         
