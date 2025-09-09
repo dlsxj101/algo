@@ -28,35 +28,36 @@ public class Main {
 
             String animalName = st.nextToken();
             int animalCnt = Integer.parseInt(st.nextToken());
-            int connect = Integer.parseInt(st.nextToken()); // 부모
+            int connect = Integer.parseInt(st.nextToken());
 
-            // ★ 변경 포인트: 간선을 "부모 -> 자식"으로 저장
             adjList[connect].add(i);
 
             if (animalName.equals("W")) {
-                cnt[i] = -animalCnt; // 늑대는 음수로
+                cnt[i] = -animalCnt;
             } else {
-                cnt[i] = animalCnt;  // 양은 양수로
+                cnt[i] = animalCnt;
             }
         }
 
-        // 루트에서 한 번만 DFS
         ans = dfs(1);
+
         System.out.println(ans);
     }
 
-    // ★ 후위 순회 DFS: 자식 결과를 모아서 현재 노드에서 처리
-    static long dfs(int u) {
+    static long dfs(int now) {
         long sum = 0;
-        for (int v : adjList[u]) {
-            sum += dfs(v);
+        for(int next : adjList[now]){
+            sum += dfs(next);
         }
 
-        if (cnt[u] >= 0) {          // S x
-            return sum + cnt[u];
-        } else {                    // W x
-            long remain = sum + cnt[u]; // (cnt[u]는 음수라서 빼는 효과)
-            return remain > 0 ? remain : 0;
+        if(cnt[now] >= 0){  // 현재 노드가 양인 경우
+            return sum + cnt[now];
+        } else {            // 현재 노드가 늑대인 경우
+            long remain = sum + cnt[now];
+            if(remain > 0){
+                return remain;
+            } else return 0;
         }
+
     }
 }
